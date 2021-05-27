@@ -27,3 +27,19 @@ spec:
   # Add any fields here to override default cluster spec
   # Refer to https://cloud.google.com/config-connector/docs/reference/resource-docs/container/containercluster
   # for detailed fields and documentation.
+  # Enable the TPU support
+  enableTpu: true
+  # Enable VPC-native traffic routing. There is a "default" VPC network per region. We only need to specify the
+  # network for PODs and SERVICEs. 
+  # assuming 8 pods per node, /21 allows 128-ish nodes, /26 allows 64-ish services
+  ipAllocationPolicy:
+    clusterIpv4CidrBlock: /21
+    servicesIpv4CidrBlock: /26
+  #subnetworkRef:
+  #  name: kubeflow
+  #ipAllocationPolicy:
+  #  clusterSecondaryRangeName: pods
+  #  servicesSecondaryRangeName: services
+
+
+
